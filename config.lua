@@ -1662,15 +1662,6 @@ Config.Animal = {
         rewarditem4 = nil,
         rewarditem5 = nil,
     },
-    { -- a_c_toad_01
-        modelhash   = 1502581273,
-        name        = 'Toad',
-        rewarditem1 = nil, 
-        rewarditem2 = nil,
-        rewarditem3 = nil,
-        rewarditem4 = nil,
-        rewarditem5 = nil,
-    },
     { -- a_c_vulture_01
         modelhash   = 1104697660,
         name        = 'Vulture',
