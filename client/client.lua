@@ -13,63 +13,73 @@ Citizen.CreateThread(function()
             })
         end
         if v.showblip == true then
-            local TrapperBlip = Citizen.InvokeNative(0x554D9D53F696D002, 1664425300, v.coords)
+            local TrapperBlip = BlipAddForCoords(1664425300, v.coords)
             SetBlipSprite(TrapperBlip, joaat(Config.Blip.blipSprite), true)
             SetBlipScale(TrapperBlip, Config.Blip.blipScale)
-            Citizen.InvokeNative(0x9CB1A1623062F402, TrapperBlip, Config.Blip.blipName)
+            SetBlipName(TrapperBlip, Config.Blip.blipName)
             table.insert(SpawnedTrapperBilps, TrapperBlip)
         end
     end
 end)
 
------------------------------------------------------------------
+--------------------------------------
 -- trapper shop hours system
------------------------------------------------------------------
--- open butchers with opening hours
+--------------------------------------
 local OpenTrappers = function()
-    local hour = GetClockHours()
-    if (hour < Config.OpenTime) or (hour >= Config.CloseTime) and not Config.AlwaysOpen then
-        lib.notify({
-            title = Lang:t('client.lang_2'),
-            description = Lang:t('client.lang_3')..Config.OpenTime..Lang:t('client.lang_4'),
-            type = 'error',
-            icon = 'fa-solid fa-shop',
-            iconAnimation = 'shake',
-            duration = 7000
-        })
-        return
+    if not Config.AlwaysOpen then
+        local hour = GetClockHours()
+        if (hour < Config.OpenTime) or (hour >= Config.CloseTime) and not Config.AlwaysOpen then
+            lib.notify({
+                title = Lang:t('client.lang_2'),
+                description = Lang:t('client.lang_3')..Config.OpenTime..Lang:t('client.lang_4'),
+                type = 'error',
+                icon = 'fa-solid fa-shop',
+                iconAnimation = 'shake',
+                duration = 7000
+            })
+            return
+        end
     end
     TriggerEvent('rex-trapper:client:mainmenu')
 end
 
+--------------------------------------
 -- get trapper hours function
+--------------------------------------
 local GetTrapperHours = function()
-    local hour = GetClockHours()
-    if (hour < Config.OpenTime) or (hour >= Config.CloseTime) and not Config.AlwaysOpen then
-        for k, v in pairs(SpawnedTrapperBilps) do
-            Citizen.InvokeNative(0x662D364ABF16DE2F, v, joaat('BLIP_MODIFIER_MP_COLOR_2'))
+    if not Config.AlwaysOpen then
+        local hour = GetClockHours()
+        if (hour < Config.OpenTime) or (hour >= Config.CloseTime) then
+            for k, v in pairs(SpawnedTrapperBilps) do
+                BlipAddModifier(v, joaat('BLIP_MODIFIER_MP_COLOR_2'))
+            end
+        else
+            for k, v in pairs(SpawnedTrapperBilps) do
+                BlipAddModifier(v, joaat('BLIP_MODIFIER_MP_COLOR_8'))
+            end
         end
     else
         for k, v in pairs(SpawnedTrapperBilps) do
-            Citizen.InvokeNative(0x662D364ABF16DE2F, v, joaat('BLIP_MODIFIER_MP_COLOR_8'))
+            BlipAddModifier(v, joaat('BLIP_MODIFIER_MP_COLOR_8'))
         end
     end
 end
 
+--------------------------------------
 -- get trapper hours on player loading
+--------------------------------------
 RegisterNetEvent('RSGCore:Client:OnPlayerLoaded', function()
     GetTrapperHours()
 end)
 
--- update shop hours every min
+---------------------------------
+-- update trapper hours every min
+---------------------------------
 CreateThread(function()
     while true do
-        if Config.AlwaysOpen then
-            GetTrapperHours()
-            Wait(60000) -- every min
-        end
-        Wait(1000)
-    end       
+        GetTrapperHours()
+        Wait(60000) -- every min
+    end
 end)
 
 AddEventHandler('rex-trapper:client:opentrapper', function()
