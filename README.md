@@ -14,8 +14,8 @@
 # Installation:
 - ensure that the dependancies are added and started
 - add rsg-trapper to your resources folder
-- add items to your "\rsg-core\shared\items.lua"
-- add images to your "\rsg-inventory\html\images"
+- items have already been added to rsg-core check you have the latest version
+- images have already been added to rsg-core check you have the latest version
 
 # Starting the resource:
 - add the following to your server.cfg file : ensure rex-trapper
