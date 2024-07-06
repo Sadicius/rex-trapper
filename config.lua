@@ -561,6 +561,15 @@ Config.Pelts = {
         rewarditem5 = nil,
     },
     {
+        pelthash    = 252669332,
+        name        = 'Poor Fox Pelt',
+        rewarditem1 = 'poor_pelt',
+        rewarditem2 = nil,
+        rewarditem3 = nil,
+        rewarditem4 = nil,
+        rewarditem5 = nil,
+    },
+    {
         pelthash    = 238733925,
         name        = 'Good Fox Pelt',
         rewarditem1 = 'good_pelt',
@@ -938,9 +947,27 @@ Config.Pelts = {
         rewarditem4 = nil,
         rewarditem5 = nil,
     },
+    {
+        pelthash    = -1202329112,
+        name        = 'Perfect Raccoon Pelt',
+        rewarditem1 = 'perfect_pelt',
+        rewarditem2 = nil,
+        rewarditem3 = nil,
+        rewarditem4 = nil,
+        rewarditem5 = nil,
+    },
     -------------------------------------
     -- Alligator
     -------------------------------------
+    {
+        pelthash    = -1892280447,
+        name        = 'Alligator',
+        rewarditem1 = 'poor_pelt',
+        rewarditem2 = nil,
+        rewarditem3 = nil,
+        rewarditem4 = nil,
+        rewarditem5 = nil,
+    },
     {
         pelthash    = -1243878166,
         name        = 'Alligator',
@@ -954,6 +981,15 @@ Config.Pelts = {
         pelthash    = -1475338121,
         name        = 'Alligator',
         rewarditem1 = 'perfect_pelt',
+        rewarditem2 = nil,
+        rewarditem3 = nil,
+        rewarditem4 = nil,
+        rewarditem5 = nil,
+    },
+    {
+        pelthash    = 2028722809,
+        name        = 'Alligator',
+        rewarditem1 = 'legendary_pelt',
         rewarditem2 = nil,
         rewarditem3 = nil,
         rewarditem4 = nil,
